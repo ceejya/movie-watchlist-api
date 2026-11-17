@@ -1,16 +1,24 @@
 // 
 import { config } from "dotenv";
 import express from "express";
-import movieRoutes from "./routes/movieRoutes.js";
+import authRoutes from './routes/authRoutes.js'
+import movieRoutes from './routes/movieRoutes.js'
 import { connectDB, disconnectDB } from "./config/db.js";
 
 config()
 const app = express();
-app.use(express.json());
-app.use("/movies", movieRoutes);
+
+// Body parsing middlewares
+app.use(express.json())
+
+
+
+app.use('/auth', authRoutes);
+app.use('/movies', movieRoutes)
 
 const PORT = Number(process.env.PORT ?? 3000);
 let server;
+
 
 try {
   await connectDB();

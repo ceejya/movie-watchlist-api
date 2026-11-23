@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import express from "express";
 import authRoutes from './routes/authRoutes.js'
 import movieRoutes from './routes/movieRoutes.js'
+import  watchlistRoutes from './routes/watchlistRoutes.js'
 import { connectDB, disconnectDB } from "./config/db.js";
 
 config()
@@ -13,7 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-
+app.use('/watchlist', watchlistRoutes)
 app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes)
 

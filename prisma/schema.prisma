@@ -24,11 +24,8 @@ model Movie {
   genres String[] @default([])
   runtime Int?
   posterUrl String?
-  createdBy String?
-  createdAt DateTime @default(now())
-
-  
-
+  createdBy String? 
+  createdAt DateTime @default(now()) 
 }
 
 model WatchlistItem{
@@ -41,6 +38,7 @@ model WatchlistItem{
    createdAt DateTime @default(now())
    updatedAt DateTime @default(now())
 
+   @@unique([userId, movieId])
 
 }
 
